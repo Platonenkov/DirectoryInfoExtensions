@@ -26,11 +26,34 @@ namespace System.IO
         /// <returns>истина  - есть заблокированные файлы, лож - нет заблокированных файлов</returns>
         private static bool IsLockFileInDirectory(this DirectoryInfo directory) => directory.GetFiles().Any(file => file.IsLocked());
 
+        public static IEnumerable<Process> EnumLockProcesses(this DirectoryInfo directory)
+        {
+            var locked_files = directory.GetFiles().Where(file => file.IsLocked()).ToList();
+            var sub = directory
+               .GetDirectories(searchOption: SearchOption.AllDirectories, searchPattern: ".")
+               .Where(d => d.IsLockFileInDirectory()).SelectMany(d=>d.GetFiles().Where(f=>f.IsLocked())).ToArray();
+            locked_files.AddRange(sub);
+
+            return locked_files.Count > 0 ? locked_files.SelectMany(f => f.EnumLockProcesses()) : Enumerable.Empty<Process>();
+        }
+        public static Task WaitDirectoryLockAsync(this DirectoryInfo directory, CancellationToken Cancel = default) => directory
+           .EnumLockProcesses()
+           .Select(process => process.WaitAsync(Cancel))
+           .WhenAll();
+
+        public static async Task<bool> WaitDirectoryLockAsync(this DirectoryInfo directory, int Timeout, CancellationToken Cancel = default)
+        {
+            var processes = directory.EnumLockProcesses().Select(process => process.WaitAsync(Cancel));
+            var process_wait = Task.WhenAll(processes);
+            var delay_task = Task.Delay(Timeout, Cancel);
+            var task = await Task.WhenAny(process_wait, delay_task).ConfigureAwait(false);
+            return task != delay_task;
+        }
 
         private static readonly WindowsIdentity __CurrentSystemUser = WindowsIdentity.GetCurrent();
 
         /// <summary>
-        /// Рекурсивно проверяет есть ли деректория и если ее нет - пробует создать
+        /// Рекурсивно проверяет есть ли директория и если ее нет - пробует создать
         /// </summary>
         /// <param name="dir">директория</param>
         /// <returns>истина если есть или удалось создать, лож если создать не удалось</returns>
