@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Description>Extensions for Directories, Read, Write, Open, Zip, Get data, create trees</Description>
+    <PackageReleaseNotes>Extensions for Directories, Read, Write, Open, Zip, Get data, create trees</PackageReleaseNotes>
+    <Authors>Platonenkov</Authors>
+    <Company>Platonenkov</Company>
+    <Copyright>https://github.com/Platonenkov</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
