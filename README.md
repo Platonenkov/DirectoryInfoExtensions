@@ -22,3 +22,19 @@ if (dir.Exists && dir.IsDirectoryHaveLockFile())
 var dir = new DirectoryInfo(DirFullPath);
 await dir.WaitDirectoryLockAsync();
 ```
+
+## Check Directory Access for users
+
+```C#
+if(dir.CanAccessToDirectoryListItems())
+{
+    var files = dir.EnumerateFiles();
+    ...
+}
+```
+
+```C#
+if (!Directory.Exists(dir) || !dir.CanAccessToDirectory(FileSystemRights.Delete))
+    Directory.Delete(dir);
+```
+
