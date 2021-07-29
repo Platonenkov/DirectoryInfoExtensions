@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryInfoExtensions", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockAccessDirectoryExtensions", "LockAccessDirectoryExtensions\LockAccessDirectoryExtensions.csproj", "{C3771387-B913-472E-9DD5-F0E777CEC0CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2A57653E-C5B4-4A85-B82D-430ED8F9A14D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleLockDirectory", "Test\TestConsoleLockDirectory\TestConsoleLockDirectory.csproj", "{6A7EE444-075D-46E2-A24C-39C6073728CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{C3771387-B913-472E-9DD5-F0E777CEC0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3771387-B913-472E-9DD5-F0E777CEC0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3771387-B913-472E-9DD5-F0E777CEC0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7EE444-075D-46E2-A24C-39C6073728CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7EE444-075D-46E2-A24C-39C6073728CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7EE444-075D-46E2-A24C-39C6073728CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7EE444-075D-46E2-A24C-39C6073728CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A7EE444-075D-46E2-A24C-39C6073728CC} = {2A57653E-C5B4-4A85-B82D-430ED8F9A14D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A7FD317-6040-49ED-A1CE-7BD441581196}
